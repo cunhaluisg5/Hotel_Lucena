@@ -19,18 +19,19 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
- * @author tassio
+ * @author luisg
  */
 @Entity
 @Table(name = "usuarios")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "Usuarios.findAll", query = "SELECT u FROM Usuarios u"),
-    @NamedQuery(name = "Usuarios.findByIdUsuario", query = "SELECT u FROM Usuarios u WHERE u.idUsuario = :idUsuario"),
-    @NamedQuery(name = "Usuarios.findByCodUsuario", query = "SELECT u FROM Usuarios u WHERE u.codUsuario = :codUsuario"),
-    @NamedQuery(name = "Usuarios.findByNomeUsuario", query = "SELECT u FROM Usuarios u WHERE u.nomeUsuario = :nomeUsuario"),
-    @NamedQuery(name = "Usuarios.findByContatoUsuario", query = "SELECT u FROM Usuarios u WHERE u.contatoUsuario = :contatoUsuario"),
-    @NamedQuery(name = "Usuarios.findByTipoUsuariol", query = "SELECT u FROM Usuarios u WHERE u.tipoUsuariol = :tipoUsuariol")})
+    @NamedQuery(name = "Usuarios.findAll", query = "SELECT u FROM Usuarios u")
+    , @NamedQuery(name = "Usuarios.findByIdUsuario", query = "SELECT u FROM Usuarios u WHERE u.idUsuario = :idUsuario")
+    , @NamedQuery(name = "Usuarios.findByCodUsuario", query = "SELECT u FROM Usuarios u WHERE u.codUsuario = :codUsuario")
+    , @NamedQuery(name = "Usuarios.findByContatoUsuario", query = "SELECT u FROM Usuarios u WHERE u.contatoUsuario = :contatoUsuario")
+    , @NamedQuery(name = "Usuarios.findByNomeUsuario", query = "SELECT u FROM Usuarios u WHERE u.nomeUsuario = :nomeUsuario")
+    , @NamedQuery(name = "Usuarios.findByTipoUsuariol", query = "SELECT u FROM Usuarios u WHERE u.tipoUsuariol = :tipoUsuariol")
+    , @NamedQuery(name = "Usuarios.findByEmailUsuario", query = "SELECT u FROM Usuarios u WHERE u.emailUsuario = :emailUsuario")})
 public class Usuarios implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -39,18 +40,17 @@ public class Usuarios implements Serializable {
     @Basic(optional = false)
     @Column(name = "idUsuario")
     private Integer idUsuario;
-    @Basic(optional = false)
     @Column(name = "codUsuario")
-    private int codUsuario;
-    @Basic(optional = false)
-    @Column(name = "nomeUsuario")
-    private String nomeUsuario;
-    @Basic(optional = false)
+    private Integer codUsuario;
     @Column(name = "contatoUsuario")
     private String contatoUsuario;
-    @Basic(optional = false)
+    @Column(name = "nomeUsuario")
+    private String nomeUsuario;
     @Column(name = "tipoUsuariol")
     private String tipoUsuariol;
+    @Basic(optional = false)
+    @Column(name = "emailUsuario")
+    private String emailUsuario;
 
     public Usuarios() {
     }
@@ -59,12 +59,9 @@ public class Usuarios implements Serializable {
         this.idUsuario = idUsuario;
     }
 
-    public Usuarios(Integer idUsuario, int codUsuario, String nomeUsuario, String contatoUsuario, String tipoUsuariol) {
+    public Usuarios(Integer idUsuario, String emailUsuario) {
         this.idUsuario = idUsuario;
-        this.codUsuario = codUsuario;
-        this.nomeUsuario = nomeUsuario;
-        this.contatoUsuario = contatoUsuario;
-        this.tipoUsuariol = tipoUsuariol;
+        this.emailUsuario = emailUsuario;
     }
 
     public Integer getIdUsuario() {
@@ -75,20 +72,12 @@ public class Usuarios implements Serializable {
         this.idUsuario = idUsuario;
     }
 
-    public int getCodUsuario() {
+    public Integer getCodUsuario() {
         return codUsuario;
     }
 
-    public void setCodUsuario(int codUsuario) {
+    public void setCodUsuario(Integer codUsuario) {
         this.codUsuario = codUsuario;
-    }
-
-    public String getNomeUsuario() {
-        return nomeUsuario;
-    }
-
-    public void setNomeUsuario(String nomeUsuario) {
-        this.nomeUsuario = nomeUsuario;
     }
 
     public String getContatoUsuario() {
@@ -99,12 +88,28 @@ public class Usuarios implements Serializable {
         this.contatoUsuario = contatoUsuario;
     }
 
+    public String getNomeUsuario() {
+        return nomeUsuario;
+    }
+
+    public void setNomeUsuario(String nomeUsuario) {
+        this.nomeUsuario = nomeUsuario;
+    }
+
     public String getTipoUsuariol() {
         return tipoUsuariol;
     }
 
     public void setTipoUsuariol(String tipoUsuariol) {
         this.tipoUsuariol = tipoUsuariol;
+    }
+
+    public String getEmailUsuario() {
+        return emailUsuario;
+    }
+
+    public void setEmailUsuario(String emailUsuario) {
+        this.emailUsuario = emailUsuario;
     }
 
     @Override
