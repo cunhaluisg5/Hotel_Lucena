@@ -7,6 +7,7 @@
     <class>br.rio.puc.inf.les.model.Apartamento</class>
     <class>br.rio.puc.inf.les.model.Reservas</class>
     <class>br.rio.puc.inf.les.model.Usuarios</class>
+    <class>br.rio.puc.inf.les.model.Item</class>
     <exclude-unlisted-classes>false</exclude-unlisted-classes>
     <properties>
       <property name="eclipselink.ddl-generation.output-mode" value="database"/>
