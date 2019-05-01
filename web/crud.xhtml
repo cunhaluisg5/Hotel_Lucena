@@ -5,12 +5,12 @@
                 xmlns:ui="http://java.sun.com/jsf/facelets"
                 xmlns:p="http://primefaces.org/ui">
     <ui:define name="content">
-        <h2 class="page-header">Gerenciamento de Apartamentos</h2>
+        <h2 class="page-header">CRUD</h2>
         <br/>
         <h:form id="formPrincipal">
 
             <div align="center">
-                <p:dataTable var="lista" value="#{ItemBean.itens}"
+                <p:dataTable var="lista" value="#{itensBean.items}"
                              id="tabelaActivity" emptyMessage="Nenhum registro encontrado"
                              paginatorTemplate="{RowsPerPageDropdown} {CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink}"
                              paginator="true" rows="10" rowsPerPageTemplate="5,10,25,50,100,9999" style="width:100%">
@@ -42,12 +42,12 @@
                     <p:column headerText="Opções" exportable="false">
                         <center>
                             <p:commandButton icon="ui-icon-pencil" value="Editar" onclick="PF('record').show();"> 
-                                <f:setPropertyActionListener target="#{ItemBean.item}"
+                                <f:setPropertyActionListener target="#{itensBean.item}"
                                                              value="#{lista}" />
                             </p:commandButton>
 
                             <p:commandButton icon="ui-icon-trash" value="Deletar" onclick="PF('remove').show();"> 
-                                <f:setPropertyActionListener target="#{ItemBean.item}"
+                                <f:setPropertyActionListener target="#{itensBean.item}"
                                                              value="#{lista}" />
                             </p:commandButton> 
                         </center>
@@ -65,12 +65,12 @@
 
                 <h:commandLink id="excel">
                     <p:graphicImage name="./images/exports/excel.png" />
-                    <p:dataExporter type="xls" target="tabelaActivity" fileName="activitys" postProcessor="#{ItemBean.postProcessXLS}" />
+                    <p:dataExporter type="xls" target="tabelaActivity" fileName="activitys" postProcessor="#{itensBean.postProcessXLS}" />
                 </h:commandLink>
 
                 <h:commandLink id="pdf">
                     <p:graphicImage name="./images/exports/pdf.png" />
-                    <p:dataExporter type="pdf" target="tabelaActivity" fileName="activitys" preProcessor="#{ItemBean.preProcessPDF}" />
+                    <p:dataExporter type="pdf" target="tabelaActivity" fileName="activitys" preProcessor="#{itensBean.preProcessPDF}" />
                 </h:commandLink>
 
 
@@ -91,29 +91,27 @@
             </p:confirmDialog>  
 
 
-            <p:dialog header="Novo" widgetVar="record" modal="false" focus="id">
+            <p:dialog header="Novo" widgetVar="record" modal="false" focus="nome">
 
 
                 <p:panelGrid id="panelRecord" columns="2"> 
-                    Item:
-                    <p:inputText id="id" value="#{ItemBean.item.idItem}" />
                     Nome:
-                    <p:inputText id="nome" value="#{ItemBean.item.nomeItem}" />
-                    Nome:
-                    <p:inputText id="descricao" value="#{ItemBean.item.descricaoItem}" />
+                    <p:inputText id="nome" value="#{itensBean.item.nomeItem}" />
+                    Descrição:
+                    <p:inputText id="descricao" value="#{itensBean.item.descricaoItem}" />
                     Quantidade:
-                    <p:inputText id="quantidade" value="#{ItemBean.item.quantidadeItem}" />
+                    <p:inputText id="quantidade" value="#{itensBean.item.quantidadeItem}" />
                 </p:panelGrid>
 
                 <br/>
                 <p:commandButton value="Salvar"  
-                                 actionListener="#{ItemBean.record}" onclick="record.hide()" alt="Record"/> 
+                                 actionListener="#{itensBean.record}" onclick="record.hide()" alt="Record"/> 
             </p:dialog>
 
             <p:dialog header="Delete" widgetVar="remove" modal="false"> 
                 Você tem certeza?
                 <p:commandButton value="Deletar"  
-                                 actionListener="#{ItemBean.exclude}" onclick="remove.hide()" alt="Delete" /> 
+                                 actionListener="#{itensBean.exclude}" onclick="remove.hide()" alt="Delete" /> 
             </p:dialog>
         </h:form>
     </ui:define>
